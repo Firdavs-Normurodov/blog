@@ -1,13 +1,15 @@
 {
-  "name": "blog-backend",
+  "name": "blog-fullstack",
   "version": "1.0.0",
-  "description": "Backend for a blog site with authentication and post management",
-  "main": "backend/index.js",
+  "description": "Fullstack Blog Project",
+  "private": true,
   "type": "module",
+  "main": "backend/index.js",
   "scripts": {
     "start": "node backend/index.js",
-    "dev": "nodemon backend/index.js",
-    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "build": "cd frontend && npm install && npm run build",
+    "install:all": "npm install && cd frontend && npm install"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -20,7 +22,8 @@
     "mongoose": "^7.0.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "validator": "^13.9.0"
+    "validator": "^13.9.0",
+    "concurrently": "^8.2.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
